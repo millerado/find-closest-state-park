@@ -38,10 +38,12 @@ function getAllStateParks(event) {
 function renderParkList(parkData) {
   $main.html(`
   <h3>Parks in ${$input.val()}</h3>
-  <p>${parkData.data[0].fullName}</p>
-  <p>${parkData.data[1].fullName}</p>
-  <p>${parkData.data[2].fullName}</p>
-  <p>${parkData.data[3].fullName}</p>
-  <p>${parkData.data[4].fullName}</p>
+  <ul>
+  <li>${parkData.data[0].fullName}</>
+  <li>${parkData.data[1].fullName}</li>
+  <li>${parkData.data[2].fullName}</li>
+  <li>${parkData.data[3].fullName}</li>
+  <li>${parkData.data[4].fullName}</li>
+  </ul>
   `);
 }
