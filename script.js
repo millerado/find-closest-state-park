@@ -5,19 +5,27 @@ const API_KEY = 'cPYKs2IvkpGQERkBvONFwDJ8KVSKt1xjb9V3vzXm';
 // States
 
 // Cached Element Listeners
+const $form = $('form');
+const $input = $('input[type="text"]');
 
 // Event Listeners
+$form.on('submit', getAllStateParks);
 
 // Functions
 
-function getAllStateParks() {
-  const promise = $.ajax(`${URL}/parks?stateCode=CO&api_key=${API_KEY}`);
+function getAllStateParks(event) {
+  event && event.preventDefault();
+
+  const inputState = $input.val();
+  console.log(inputState);
+
+  const promise = $.ajax(
+    `${URL}/parks?stateCode=${inputState}&api_key=${API_KEY}`
+  );
 
   promise.then(
     (data) => {
       console.log(data);
-      console.log(data.data[0].fullName);
-      console.log(data.data[0].description);
     },
     (error) => {
       console.log(error);
