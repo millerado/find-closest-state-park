@@ -10,13 +10,17 @@ const API_KEY = 'cPYKs2IvkpGQERkBvONFwDJ8KVSKt1xjb9V3vzXm';
 
 // Functions
 
-const promise = $.ajax(`${URL}/parks?stateCode=CO&api_key=${API_KEY}`);
+function getAllStateParks() {
+  const promise = $.ajax(`${URL}/parks?stateCode=CO&api_key=${API_KEY}`);
 
-promise.then(
-  (data) => {
-    console.log(data);
-  },
-  (error) => {
-    console.log(error);
-  }
-);
+  promise.then(
+    (data) => {
+      console.log(data);
+      console.log(data.data[0].fullName);
+      console.log(data.data[0].description);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+}
