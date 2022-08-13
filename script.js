@@ -8,6 +8,7 @@ const API_KEY = 'cPYKs2IvkpGQERkBvONFwDJ8KVSKt1xjb9V3vzXm';
 const $form = $('form');
 const $main = $('main');
 const $input = $('input[type="text"]');
+const $ul = $('ul');
 
 // Event Listeners
 $form.on('submit', getAllStateParks);
@@ -36,14 +37,9 @@ function getAllStateParks(event) {
 }
 
 function renderParkList(parkData) {
-  $main.html(`
-  <h3>Parks in ${$input.val()}</h3>
-  <ul>
-  <li>${parkData.data[0].fullName}</>
-  <li>${parkData.data[1].fullName}</li>
-  <li>${parkData.data[2].fullName}</li>
-  <li>${parkData.data[3].fullName}</li>
-  <li>${parkData.data[4].fullName}</li>
-  </ul>
-  `);
+  $ul.html(`
+  <h3>Parks in ${$input.val()}</h3>`);
+  parkData.data.forEach((park, index) => {
+    $ul.append(`<li>${parkData.data[index].fullName}</li>`);
+  });
 }
