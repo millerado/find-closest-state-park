@@ -18,11 +18,12 @@ $ul.on('click', 'p', hideDescription);
 
 // Functions
 function hideDescription(event) {
-  console.log(event.target);
+  event.target.classList.add('hidden');
 }
 
 function displayParkInfo(event) {
-  if (!event.target.classList.length) return;
+  if (!event.target.classList.length || event.target.classList[0] === 'hidden')
+    return;
   const clickIndex = event.target.classList[0].slice(-1);
   const pEl = document.createElement('p');
   event.target.append(pEl);
