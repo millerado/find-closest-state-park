@@ -12,14 +12,17 @@ const $ul = $('ul');
 
 // Event Listeners
 $form.on('submit', getAllStateParks);
+$ul.on('click', displayParkInfo);
 
 // Functions
+function displayParkInfo(event) {
+  console.log(event.target);
+}
 
 function getAllStateParks(event) {
   event && event.preventDefault();
 
   const inputState = $input.val();
-  console.log(inputState);
 
   const promise = $.ajax(
     `${URL}/parks?stateCode=${inputState}&api_key=${API_KEY}`
@@ -40,6 +43,7 @@ function renderParkList(parkData) {
   $ul.html(`
   <h3>Parks in ${$input.val()}</h3>`);
   parkData.data.forEach((park, index) => {
-    $ul.append(`<li>${parkData.data[index].fullName}</li>`);
+    $ul.append(`<li>${parkData.data[index].fullName}</li>
+      <p>${parkData.data[index].description}`);
   });
 }
