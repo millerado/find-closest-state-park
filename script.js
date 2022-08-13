@@ -14,16 +14,19 @@ const $ul = $('ul');
 // Event Listeners
 $form.on('submit', getAllStateParks);
 $ul.on('click', 'li', displayParkInfo);
-$ul.on('click', 'p', hideDescription);
+$ul.on('click', 'p', displayParkInfo);
 
 // Functions
 function hideDescription(event) {
   event.target.classList.add('hidden');
 }
 
-// Needs debugging for clicking on list element multiple times and displaying multiple descriptions
 function displayParkInfo(event) {
-  console.log('clicked');
+  if (event.target.children.length) {
+    event.target.children[1].classList.toggle('hidden');
+  } else {
+    event.target.classList.add('hidden');
+  }
   // if (!event.target.classList.length || event.target.classList[0] === 'hidden')
   //   return;
   // const clickIndex = event.target.classList[0].slice(-1);
@@ -56,7 +59,6 @@ function getAllStateParks(event) {
 function renderParkList(parkData) {
   $ul.html(`
   <h3>Parks in ${$input.val()}</h3>`);
-  console.log(parkData);
   parkData.data.forEach((park, index) => {
     const liEl = document.createElement('li');
     // const pEl = document.createElement('p');
