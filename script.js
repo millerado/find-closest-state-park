@@ -21,13 +21,15 @@ function hideDescription(event) {
   event.target.classList.add('hidden');
 }
 
+// Needs debugging for clicking on list element multiple times and displaying multiple descriptions
 function displayParkInfo(event) {
-  if (!event.target.classList.length || event.target.classList[0] === 'hidden')
-    return;
-  const clickIndex = event.target.classList[0].slice(-1);
-  const pEl = document.createElement('p');
-  event.target.append(pEl);
-  pEl.innerText = `${stateParkList.data[clickIndex].description}`;
+  console.log('clicked');
+  // if (!event.target.classList.length || event.target.classList[0] === 'hidden')
+  //   return;
+  // const clickIndex = event.target.classList[0].slice(-1);
+  // const pEl = document.createElement('p');
+  // event.target.append(pEl);
+  // pEl.innerText = `${stateParkList.data[clickIndex].description}`;
 }
 
 function getAllStateParks(event) {
@@ -54,9 +56,15 @@ function getAllStateParks(event) {
 function renderParkList(parkData) {
   $ul.html(`
   <h3>Parks in ${$input.val()}</h3>`);
+  console.log(parkData);
   parkData.data.forEach((park, index) => {
-    $ul.append(
-      `<li class="park-${index}">${parkData.data[index].fullName}</li>`
-    );
+    const liEl = document.createElement('li');
+    // const pEl = document.createElement('p');
+    // pEl.innerText = `${park.description}`;
+    // pEl.classList.add('hidden');
+    // liEl.append(pEl);
+    liEl.innerHTML = `${park.fullName}<br><p class="hidden">${park.description}</p>`;
+    liEl.classList.add(`park-${index}`);
+    $ul.append(liEl);
   });
 }
