@@ -14,9 +14,15 @@ const $ul = $('ul');
 // Event Listeners
 $form.on('submit', getAllStateParks);
 $ul.on('click', 'li', displayParkInfo);
+$ul.on('click', 'p', hideDescription);
 
 // Functions
+function hideDescription(event) {
+  console.log(event.target);
+}
+
 function displayParkInfo(event) {
+  if (!event.target.classList.length) return;
   const clickIndex = event.target.classList[0].slice(-1);
   const pEl = document.createElement('p');
   event.target.append(pEl);
