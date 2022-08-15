@@ -78,7 +78,7 @@ function displayParkInfo(event) {
 
 function getAllStateParks(event) {
   event && event.preventDefault();
-
+  if (stateAbbr[$input.val().toLowerCase()] === undefined) return;
   const inputState = stateAbbr[$input.val().toLowerCase()];
   const promise = $.ajax(
     `${URL}/parks?stateCode=${inputState}&api_key=${API_KEY}`
@@ -96,18 +96,6 @@ function getAllStateParks(event) {
   );
 }
 
-function renderParkList(parkData) {
-  const stateName = normStateNameForDisplay();
-  $ul.html(`
-  <h3>Parks in ${stateName}</h3>`);
-  parkData.data.forEach((park, index) => {
-    const liEl = document.createElement('li');
-    liEl.innerHTML = `${park.fullName}<br><p class="hidden">${park.description}</p>`;
-    liEl.classList.add(`park-${index}`);
-    $ul.append(liEl);
-  });
-}
-
 function normStateNameForDisplay() {
   let stateName = $input.val();
   const spaceIndex = stateName.indexOf(' ');
@@ -123,4 +111,16 @@ function normStateNameForDisplay() {
     stateName = stateName[0].toUpperCase() + stateName.slice(1).toLowerCase();
   }
   return stateName;
+}
+
+function renderParkList(parkData) {
+  const stateName = normStateNameForDisplay();
+  $ul.html(`
+  <h3>Parks in ${stateName}</h3>`);
+  parkData.data.forEach((park, index) => {
+    const liEl = document.createElement('li');
+    liEl.innerHTML = `${park.fullName}<br><p class="hidden">${park.description}</p>`;
+    liEl.classList.add(`park-${index}`);
+    $ul.append(liEl);
+  });
 }
