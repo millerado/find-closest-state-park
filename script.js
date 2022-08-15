@@ -79,8 +79,7 @@ function displayParkInfo(event) {
 function getAllStateParks(event) {
   event && event.preventDefault();
 
-  const inputState = $input.val();
-
+  const inputState = stateAbbr[$input.val().toLowerCase()];
   const promise = $.ajax(
     `${URL}/parks?stateCode=${inputState}&api_key=${API_KEY}`
   );
@@ -96,14 +95,32 @@ function getAllStateParks(event) {
     }
   );
 }
-// Add city where it's located
+
 function renderParkList(parkData) {
+  const stateName = normStateNameForDisplay();
   $ul.html(`
-  <h3>Parks in ${$input.val()}</h3>`);
+  <h3>Parks in ${stateName}</h3>`);
   parkData.data.forEach((park, index) => {
     const liEl = document.createElement('li');
     liEl.innerHTML = `${park.fullName}<br><p class="hidden">${park.description}</p>`;
     liEl.classList.add(`park-${index}`);
     $ul.append(liEl);
   });
+}
+
+function normStateNameForDisplay() {
+  let stateName = $input.val();
+  const spaceIndex = stateName.indexOf(' ');
+
+  if (!(spaceIndex === -1)) {
+    stateName =
+      stateName[0].toUpperCase() +
+      stateName.slice(1, spaceIndex).toLowerCase() +
+      ' ' +
+      stateName[spaceIndex + 1].toUpperCase() +
+      stateName.slice(spaceIndex + 2).toLowerCase();
+  } else {
+    stateName = stateName[0].toUpperCase() + stateName.slice(1).toLowerCase();
+  }
+  return stateName;
 }
