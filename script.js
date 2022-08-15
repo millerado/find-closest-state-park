@@ -1,7 +1,7 @@
 // Constants
 const URL = 'https://developer.nps.gov/api/v1';
 const API_KEY = 'cPYKs2IvkpGQERkBvONFwDJ8KVSKt1xjb9V3vzXm';
-const stateAbbr = {
+const stateAbbrs = {
   alabama: 'AL',
   alaska: 'AK',
   arizona: 'AZ',
@@ -55,20 +55,23 @@ const stateAbbr = {
 };
 // States
 let stateParkList = {};
+let inputState = '';
 
 // Cached Element Listeners
 const $form = $('form');
-const $main = $('main');
+const $main = $('main'); // Not using?
 const $input = $('input[type="text"]');
 const $ul = $('ul');
-const $body = $('body');
+const $body = $('body'); //Not using?
 const $detailsBox = $('#details-box');
+const $svg = $('svg');
 
 // Event Listeners
 $form.on('submit', getAllStateParks);
 $ul.on('click', 'li', toggleParkInfo);
 $ul.on('click', 'div', hideParkInfo);
-$body.on('mouseover', onMouseOverMap);
+$svg.on('mouseover', onMouseOverMap);
+$svg.on('click', getAllStateParks);
 
 // Functions
 function toggleParkInfo(event) {
@@ -82,15 +85,23 @@ function hideParkInfo(event) {
 
 function getAllStateParks(event) {
   event && event.preventDefault();
-  if (stateAbbr[$input.val().toLowerCase()] === undefined) return;
-  const inputState = stateAbbr[$input.val().toLowerCase()];
+  console.log(event.target);
+  let inputStateAbbr = '';
+  if (event.target.nodeName === 'path') {
+    inputStateAbbr = event.target.id;
+    inputState = getKeyByValue(stateAbbrs, event.target.id);
+  } else {
+    if (stateAbbrs[$input.val().toLowerCase()] === undefined) return;
+    inputStateAbbr = stateAbbrs[$input.val().toLowerCase()];
+    inputState = $input.val();
+  }
   const promise = $.ajax(
-    `${URL}/parks?stateCode=${inputState}&api_key=${API_KEY}`
+    `${URL}/parks?stateCode=${inputStateAbbr}&api_key=${API_KEY}`
   );
 
   promise.then(
     (data) => {
-      console.log(data);
+      // console.log(data);
       renderParkList(data);
       stateParkList = data;
     },
@@ -101,7 +112,8 @@ function getAllStateParks(event) {
 }
 
 function normStateNameForDisplay() {
-  let stateName = $input.val();
+  let stateName = inputState;
+  console.log(inputState, stateName);
   const spaceIndex = stateName.indexOf(' ');
 
   if (!(spaceIndex === -1)) {
@@ -130,7 +142,6 @@ function renderParkList(parkData) {
 }
 
 function onMouseOverMap(event) {
-  console.log($detailsBox);
   if (event.target.tagName === 'path') {
     const content = event.target.dataset.name;
     $detailsBox.text(content);
@@ -141,8 +152,12 @@ function onMouseOverMap(event) {
 }
 
 window.onmousemove = function (e) {
-  var x = e.clientX,
+  let x = e.clientX,
     y = e.clientY;
   $detailsBox.css('top', y + 20 + 'px');
   $detailsBox.css('left', x + 'px');
 };
+
+function getKeyByValue(object, value) {
+  return Object.keys(object).find((key) => object[key] === value);
+}
