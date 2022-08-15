@@ -61,11 +61,14 @@ const $form = $('form');
 const $main = $('main');
 const $input = $('input[type="text"]');
 const $ul = $('ul');
+const $body = $('body');
+const $detailsBox = $('#details-box');
 
 // Event Listeners
 $form.on('submit', getAllStateParks);
 $ul.on('click', 'li', toggleParkInfo);
 $ul.on('click', 'div', hideParkInfo);
+$body.on('mouseover', onMouseOverMap);
 
 // Functions
 function toggleParkInfo(event) {
@@ -125,3 +128,21 @@ function renderParkList(parkData) {
     $ul.append(liEl);
   });
 }
+
+function onMouseOverMap(event) {
+  console.log($detailsBox);
+  if (event.target.tagName === 'path') {
+    const content = event.target.dataset.name;
+    $detailsBox.text(content);
+    $detailsBox.css('opacity', '100%');
+  } else {
+    $detailsBox.css('opacity', '0%');
+  }
+}
+
+window.onmousemove = function (e) {
+  var x = e.clientX,
+    y = e.clientY;
+  $detailsBox.css('top', y + 20 + 'px');
+  $detailsBox.css('left', x + 'px');
+};
