@@ -69,6 +69,7 @@ $ul.on('click', 'p', displayParkInfo);
 
 // Functions
 function displayParkInfo(event) {
+  console.log(event.target);
   if (event.target.children.length) {
     event.target.children[1].classList.toggle('hidden');
   } else {
@@ -119,7 +120,7 @@ function renderParkList(parkData) {
   <h3>Parks in ${stateName}</h3>`);
   parkData.data.forEach((park, index) => {
     const liEl = document.createElement('li');
-    liEl.innerHTML = `${park.fullName}<br><p class="hidden">${park.description}</p>`;
+    liEl.innerHTML = `${park.fullName}<div class='hidden'><br><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}<br><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}<br><a href=${park.directionsUrl} target="_blank">Directions</a><br><img src=${park.images[0].url}><br><br>${park.description}</p></div>`;
     liEl.classList.add(`park-${index}`);
     $ul.append(liEl);
   });
