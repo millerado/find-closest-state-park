@@ -64,17 +64,17 @@ const $ul = $('ul');
 
 // Event Listeners
 $form.on('submit', getAllStateParks);
-$ul.on('click', 'li', displayParkInfo);
-$ul.on('click', 'p', displayParkInfo);
+$ul.on('click', 'li', toggleParkInfo);
+$ul.on('click', 'div', hideParkInfo);
 
 // Functions
-function displayParkInfo(event) {
-  console.log(event.target);
-  if (event.target.children.length) {
-    event.target.children[1].classList.toggle('hidden');
-  } else {
-    event.target.classList.add('hidden');
-  }
+function toggleParkInfo(event) {
+  if (!(event.target.parentElement.nodeName === 'UL')) return;
+  event.target.children[0].classList.toggle('hidden');
+}
+
+function hideParkInfo(event) {
+  event.target.parentElement.classList.toggle('hidden');
 }
 
 function getAllStateParks(event) {
@@ -120,7 +120,7 @@ function renderParkList(parkData) {
   <h3>Parks in ${stateName}</h3>`);
   parkData.data.forEach((park, index) => {
     const liEl = document.createElement('li');
-    liEl.innerHTML = `${park.fullName}<div class='hidden'><br><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}<br><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}<br><a href=${park.directionsUrl} target="_blank">Directions</a><br><img src=${park.images[0].url}><br><br>${park.description}</p></div>`;
+    liEl.innerHTML = `${park.fullName}<div class='hidden'><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}</p><p><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}</p><a href=${park.directionsUrl} target="_blank">Directions</a><img src=${park.images[0].url}><br><br><p>${park.description}</p></div>`;
     liEl.classList.add(`park-${index}`);
     $ul.append(liEl);
   });
