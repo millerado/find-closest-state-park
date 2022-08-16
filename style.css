@@ -47,6 +47,7 @@ input[type='submit'] {
 
 ul {
   margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 h3 {
@@ -144,6 +145,23 @@ svg {
 
   #details-box {
     display: inline;
+  }
+
+  ul {
+    justify-content: left;
+    width: 800px;
+  }
+
+  img {
+    width: 400px;
+  }
+
+  .grid-container {
+    background-color: rgb(167, 194, 182);
+    display: flex;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
 }
 /* #us-map {
   display: block;
