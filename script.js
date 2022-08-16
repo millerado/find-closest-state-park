@@ -68,23 +68,29 @@ const $svg = $('svg');
 
 // Event Listeners
 $form.on('submit', getAllStateParks);
-$ul.on('click', 'li', toggleParkInfo);
-$ul.on('click', 'div', hideParkInfo);
+// $ul.on('click', 'li', toggleParkInfo);
+// $ul.on('click', 'div', hideParkInfo);
 $svg.on('mouseover', onMouseOverMap);
 $svg.on('click', getAllStateParks);
+window.onmousemove = function (e) {
+  let x = e.clientX,
+    y = e.clientY;
+  $detailsBox.css('top', y + 20 + 'px');
+  $detailsBox.css('left', x + 'px');
+};
 
 // Functions
-function toggleParkInfo(event) {
-  if (!(event.target.parentElement.nodeName === 'UL')) return;
-  event.target.children[0].classList.toggle('hidden');
-  event.target.children[0].classList.toggle('grid-container');
-}
+// function toggleParkInfo(event) {
+//   if (!(event.target.parentElement.nodeName === 'UL')) return;
+//   event.target.children[0].classList.toggle('hidden');
+//   event.target.children[0].classList.toggle('grid-container');
+// }
 
-function hideParkInfo(event) {
-  if (!(event.target.parentElement.nodeName === 'DIV')) return;
-  event.target.parentElement.classList.toggle('hidden');
-  event.target.parentElement.classList.toggle('grid-container');
-}
+// function hideParkInfo(event) {
+//   if (!(event.target.parentElement.nodeName === 'DIV')) return;
+//   event.target.parentElement.classList.toggle('hidden');
+//   event.target.parentElement.classList.toggle('grid-container');
+// }
 
 function getAllStateParks(event) {
   event && event.preventDefault();
@@ -137,7 +143,7 @@ function renderParkList(parkData) {
   <h3>Parks in ${stateName}</h3>`);
   parkData.data.forEach((park, index) => {
     const liEl = document.createElement('li');
-    liEl.innerHTML = `${park.fullName}<div class='hidden'><img src=${park.images[0].url}><div class="info-box"><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}</p><p><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}</p><span><a href=${park.directionsUrl} target="_blank">Directions</a></span><p>${park.description}</p></div></div>`;
+    liEl.innerHTML = `${park.fullName}<div class='grid-container'><img src=${park.images[0].url}><div class="info-box"><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}</p><p><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}</p><span><a href=${park.directionsUrl} target="_blank">Directions</a></span><p>${park.description}</p></div></div>`;
     liEl.classList.add(`park-${index}`);
     $ul.append(liEl);
   });
@@ -152,13 +158,6 @@ function onMouseOverMap(event) {
     $detailsBox.css('opacity', '0%');
   }
 }
-
-window.onmousemove = function (e) {
-  let x = e.clientX,
-    y = e.clientY;
-  $detailsBox.css('top', y + 20 + 'px');
-  $detailsBox.css('left', x + 'px');
-};
 
 function getKeyByValue(object, value) {
   return Object.keys(object).find((key) => object[key] === value);
