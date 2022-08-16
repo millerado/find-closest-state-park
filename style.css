@@ -9,12 +9,13 @@
 body {
   background-color: rgb(114, 161, 141);
   font-family: 'Roboto Slab', serif;
+  margin: 0 20px;
 }
 
 h1 {
   width: 450px;
   font-size: 49px;
-  padding: 5px 20px;
+  padding: 5px 10px;
 }
 
 input[type='text'] {
@@ -23,14 +24,14 @@ input[type='text'] {
   background-color: azure;
   border: none;
   font-size: 25px;
-  margin-left: 20px;
+  margin-left: 10px;
   border-radius: 3px;
   position: absolute;
 }
 
 input[type='submit'] {
   position: relative;
-  left: 350px;
+  left: 345px;
 
   /* width: 50px; */
   height: 30px;
@@ -45,7 +46,6 @@ input[type='submit'] {
 }
 
 ul {
-  margin-left: 40px;
   margin-top: 20px;
 }
 
@@ -54,13 +54,29 @@ h3 {
 }
 
 li {
-  width: 90%;
   font-size: 20px;
+  list-style: none;
   line-height: 1.4;
 }
 
 img {
   width: 100%;
+  border-radius: 5px;
+}
+
+p {
+  font-size: 16px;
+}
+
+span {
+  font-size: 16px;
+}
+
+.info-box {
+  background-color: rgb(167, 194, 182);
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 path {
