@@ -135,7 +135,7 @@ function renderParkList(parkData) {
   <h3>Parks in ${stateName}</h3>`);
   parkData.data.forEach((park, index) => {
     const liEl = document.createElement('li');
-    liEl.innerHTML = `${park.fullName}<div class='hidden'><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}</p><p><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}</p><span><a href=${park.directionsUrl} target="_blank">Directions</a></span><img src=${park.images[0].url}><br><br><p>${park.description}</p></div>`;
+    liEl.innerHTML = `${park.fullName}<div class='grid-container hidden'><img src=${park.images[0].url}><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}</p><p><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}</p><span><a href=${park.directionsUrl} target="_blank">Directions</a></span><p>${park.description}</p></div>`;
     liEl.classList.add(`park-${index}`);
     $ul.append(liEl);
   });
