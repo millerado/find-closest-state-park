@@ -80,12 +80,13 @@ function toggleParkInfo(event) {
 }
 
 function hideParkInfo(event) {
+  if (!(event.target.parentElement.nodeName === 'DIV')) return;
   event.target.parentElement.classList.toggle('hidden');
 }
 
 function getAllStateParks(event) {
   event && event.preventDefault();
-  console.log(event.target);
+  // console.log(event.target);
   let inputStateAbbr = '';
   if (event.target.nodeName === 'path') {
     inputStateAbbr = event.target.id;
@@ -113,7 +114,6 @@ function getAllStateParks(event) {
 
 function normStateNameForDisplay() {
   let stateName = inputState;
-  console.log(inputState, stateName);
   const spaceIndex = stateName.indexOf(' ');
 
   if (!(spaceIndex === -1)) {
@@ -135,7 +135,7 @@ function renderParkList(parkData) {
   <h3>Parks in ${stateName}</h3>`);
   parkData.data.forEach((park, index) => {
     const liEl = document.createElement('li');
-    liEl.innerHTML = `${park.fullName}<div class='hidden'><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}</p><p><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}</p><a href=${park.directionsUrl} target="_blank">Directions</a><img src=${park.images[0].url}><br><br><p>${park.description}</p></div>`;
+    liEl.innerHTML = `${park.fullName}<div class='hidden'><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}</p><p><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}</p><span><a href=${park.directionsUrl} target="_blank">Directions</a></span><img src=${park.images[0].url}><br><br><p>${park.description}</p></div>`;
     liEl.classList.add(`park-${index}`);
     $ul.append(liEl);
   });
