@@ -77,11 +77,13 @@ $svg.on('click', getAllStateParks);
 function toggleParkInfo(event) {
   if (!(event.target.parentElement.nodeName === 'UL')) return;
   event.target.children[0].classList.toggle('hidden');
+  event.target.children[0].classList.toggle('grid-container');
 }
 
 function hideParkInfo(event) {
   if (!(event.target.parentElement.nodeName === 'DIV')) return;
   event.target.parentElement.classList.toggle('hidden');
+  event.target.parentElement.classList.toggle('grid-container');
 }
 
 function getAllStateParks(event) {
@@ -135,7 +137,7 @@ function renderParkList(parkData) {
   <h3>Parks in ${stateName}</h3>`);
   parkData.data.forEach((park, index) => {
     const liEl = document.createElement('li');
-    liEl.innerHTML = `${park.fullName}<div class='grid-container hidden'><img src=${park.images[0].url}><div class="info-box"><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}</p><p><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}</p><span><a href=${park.directionsUrl} target="_blank">Directions</a></span><p>${park.description}</p></div></div>`;
+    liEl.innerHTML = `${park.fullName}<div class='hidden'><img src=${park.images[0].url}><div class="info-box"><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}</p><p><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}</p><span><a href=${park.directionsUrl} target="_blank">Directions</a></span><p>${park.description}</p></div></div>`;
     liEl.classList.add(`park-${index}`);
     $ul.append(liEl);
   });
