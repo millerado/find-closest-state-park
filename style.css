@@ -1,22 +1,51 @@
-.hidden {
-  display: none;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgb(114, 161, 141);
+  font-family: 'Roboto Slab', serif;
+}
+
+h1 {
+  width: 450px;
+  font-size: 49px;
+  padding: 5px 20px;
+}
+
+input[type='text'] {
+  width: 75%;
+  height: 30px;
+  background-color: azure;
+  border: none;
+  font-size: 25px;
+  margin-left: 20px;
+  border-radius: 3px;
+  position: absolute;
+}
+
+input[type='submit'] {
+  position: relative;
+  left: 350px;
+
+  /* width: 50px; */
+  height: 30px;
+
+  padding: 0 10px;
+
+  border: none;
+  border-radius: 3px;
+
+  font-family: 'Roboto Slab', serif;
+  background-color: #cacaca;
 }
 
 img {
-  width: 400px;
-}
-
-#details-box {
-  padding: 1rem;
-  border-radius: 8px;
-  font-size: 24px;
-  position: fixed;
-  color: white;
-  background-color: black;
-  width: fit-content;
-  transform: translateX(-50%);
-  transition: opacity 0.4s ease;
-  z-index: 1;
+  width: 100%;
 }
 
 path {
@@ -30,11 +59,33 @@ path:hover {
   fill: orange !important;
 }
 
-#us-map {
+svg {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+#details-box {
+  display: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 24px;
+  position: fixed;
+  color: white;
+  background-color: black;
+  width: fit-content;
+  transform: translateX(-50%);
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+/* #us-map {
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-}
+} */
