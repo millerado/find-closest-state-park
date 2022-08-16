@@ -126,10 +126,24 @@ svg {
     margin-bottom: 10px;
   }
 
+  form {
+    margin-bottom: 20px;
+  }
+
   input[type='text'] {
     width: 500px;
     margin-left: 0;
   }
+
+  svg {
+    display: inline;
+    background-color: rgb(167, 194, 182);
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  #details-box {
+    display: inline;
 }
 /* #us-map {
   display: block;
