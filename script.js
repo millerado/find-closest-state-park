@@ -59,17 +59,13 @@ let inputState = '';
 
 // Cached Element Listeners
 const $form = $('form');
-const $main = $('main'); // Not using?
 const $input = $('input[type="text"]');
 const $ul = $('ul');
-const $body = $('body'); //Not using?
 const $detailsBox = $('#details-box');
 const $svg = $('svg');
 
 // Event Listeners
 $form.on('submit', getAllStateParks);
-// $ul.on('click', 'li', toggleParkInfo);
-// $ul.on('click', 'div', hideParkInfo);
 $svg.on('mouseover', onMouseOverMap);
 $svg.on('click', getAllStateParks);
 window.onmousemove = function (e) {
@@ -80,18 +76,6 @@ window.onmousemove = function (e) {
 };
 
 // Functions
-// function toggleParkInfo(event) {
-//   if (!(event.target.parentElement.nodeName === 'UL')) return;
-//   event.target.children[0].classList.toggle('hidden');
-//   event.target.children[0].classList.toggle('grid-container');
-// }
-
-// function hideParkInfo(event) {
-//   if (!(event.target.parentElement.nodeName === 'DIV')) return;
-//   event.target.parentElement.classList.toggle('hidden');
-//   event.target.parentElement.classList.toggle('grid-container');
-// }
-
 function getAllStateParks(event) {
   event && event.preventDefault();
   // console.log(event.target);
@@ -110,7 +94,6 @@ function getAllStateParks(event) {
 
   promise.then(
     (data) => {
-      // console.log(data);
       renderParkList(data);
       stateParkList = data;
     },
