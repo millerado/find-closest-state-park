@@ -13,7 +13,7 @@ body {
 }
 
 h1 {
-  width: 450px;
+  width: 100%;
   font-size: 49px;
   padding: 5px 10px;
 }
@@ -113,7 +113,7 @@ svg {
   z-index: 1;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
   body {
     display: flex;
     flex-direction: column;
@@ -149,11 +149,11 @@ svg {
 
   ul {
     justify-content: left;
-    width: 800px;
+    width: 820px;
   }
 
   img {
-    width: 400px;
+    width: 50%;
   }
 
   .grid-container {
@@ -161,6 +161,32 @@ svg {
     display: flex;
     margin-bottom: 10px;
     border-radius: 5px;
+    padding: 10px;
+  }
+
+  .info-box {
+    margin-left: 5px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  ul {
+    display: grid;
+    grid-template-columns: 420px 420px;
+    column-gap: 50px;
+    row-gap: 10px;
+  }
+
+  h3 {
+    grid-area: 1 / 1 / 2 / 3;
+  }
+
+  .grid-container {
+    flex-direction: column;
+  }
+
+  img {
+    width: 100%;
   }
 }
 /* #us-map {
