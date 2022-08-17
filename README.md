@@ -24,7 +24,7 @@ Mobile View
 
 ## Getting Started
 
-Checkout the live website ![here](https://find-your-national-parks.netlify.app/)
+Checkout the live website [here](https://find-your-national-parks.netlify.app/)
 
 ## Future Enhancements
 
