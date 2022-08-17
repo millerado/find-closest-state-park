@@ -9,6 +9,7 @@
 - AJAX
 - Google Fonts
 - National Parks Service API
+- US Map SVG from simplemaps.com
 
 ## Screenshots
 
@@ -24,3 +25,7 @@ Mobile View
 ## Getting Started
 
 ## Future Enhancements
+
+- display more info about parks
+- connect with Google Maps for directions to park
+- saving search results in local storage
