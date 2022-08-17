@@ -12,6 +12,15 @@
 
 ## Screenshots
 
+The main view before searching
+![Main View](./img/main-view.png 'Main View')
+View of the search results on a full desktop
+![Results View](./img/results-view.png 'Result')
+Tablet View
+![Tablet View](./img/tablet-view.png 'Tablet')
+Mobile View
+![Mobile View](./img/mobile-view.png 'Mobile')
+
 ## Getting Started
 
 ## Future Enhancements
