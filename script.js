@@ -78,7 +78,6 @@ window.onmousemove = function (e) {
 // Functions
 function getAllStateParks(event) {
   event && event.preventDefault();
-  // console.log(event.target);
   let inputStateAbbr = '';
   if (event.target.nodeName === 'path') {
     inputStateAbbr = event.target.id;
