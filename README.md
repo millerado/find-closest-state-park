@@ -1,5 +1,7 @@
 # Find Your National Parks
 
+A simple website to help people find information about parks and recreation areas managed by the National Park Service
+
 ## Technologies Used
 
 - HTML5
