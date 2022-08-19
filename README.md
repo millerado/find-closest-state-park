@@ -33,3 +33,4 @@ Checkout the live website [here](https://find-your-national-parks.netlify.app/)
 - display more info about parks
 - connect with Google Maps for directions to park
 - saving search results in local storage
+- auto scroll down, so user can see results after searching
