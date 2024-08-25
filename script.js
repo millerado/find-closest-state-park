@@ -95,11 +95,17 @@ function getAllStateParks(event) {
     (data) => {
       renderParkList(data);
       stateParkList = data;
+      scrollFunction();
     },
     (error) => {
       console.log(error);
     }
   );
+}
+``;
+function scrollFunction() {
+  const element = document.getElementById('display');
+  element.scrollIntoView({ behavior: 'smooth' });
 }
 
 function normStateNameForDisplay() {
@@ -125,7 +131,7 @@ function renderParkList(parkData) {
   <h3>Parks in ${stateName}</h3>`);
   parkData.data.forEach((park, index) => {
     const liEl = document.createElement('li');
-    liEl.innerHTML = `${park.fullName}<div class='grid-container'><img src=${park.images[0].url}><div class="info-box"><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}</p><p><strong>Entrance Fee:</strong> ${park.entranceFees[0]['cost']}</p><span><a href=${park.directionsUrl} target="_blank">Directions</a></span><p>${park.description}</p></div></div>`;
+    liEl.innerHTML = `${park.fullName}<div class='grid-container'><img src=${park.images[0].url}><div class="info-box"><p><strong>Location:</strong> ${park.addresses[0]['city']}, ${stateName}</p><span><a href=${park.directionsUrl} target="_blank">Directions</a></span><p>${park.description}</p></div></div>`;
     liEl.classList.add(`park-${index}`);
     $ul.append(liEl);
   });
